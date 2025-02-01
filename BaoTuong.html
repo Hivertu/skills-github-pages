@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Báo tường mừng năm mới 2025</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+	<canvas id="myCanvas"></canvas>
+    <header>
+        <h1>Chào mừng năm mới 2025!</h1>
+    </header>
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    function createFirework() {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height; // Bắt đầu từ vị trí ngẫu nhiên trên màn hình
+    const particles = [];
+    for (let i = 0; i < 200; i++) {
+        particles.push({
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 10, // Tăng tốc độ
+            vy: -(Math.random() * 20),
+            radius: Math.random() * 3, // Tăng kích thước
+            color: `hsl(${Math.random() * 360}, 100%, 50%)`
+        });
+    }
+
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(particle => {
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+          particle.vy += 0.2; // Trọng lực
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          ctx.fillStyle = particle.color;
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      };
+      animate();
+    }
+    setInterval(createFirework, 1000);
+
+      function checkAnswer(id, answer) {
+    const userAnswer = document.getElementById(id).value;
+    if (userAnswer.toLowerCase() === answer.toLowerCase()) {
+      alert("Chúc mừng bạn đã trả lời đúng!");
+    } else {
+      alert("Sai rồi, hãy thử lại nhé!");
+    }
+  }
+         function showMore() {
+            const moreText = document.getElementById('moreText');
+            const fullText = document.getElementById('fullText');
+            moreText.style.display = 'none';
+            fullText.style.display = 'block';
+        }
+  </script>
+    <section class="content">
+        <div class="card">
+            <h2>Lời chúc năm mới</h2>
+            <p>Năm mới 2025, chúc bạn mọi điều như ý, thành công viên mãn và hạnh phúc tràn đầy. Hy vọng chúng ta sẽ tiếp tục chia sẻ thật nhiều khoảnh khắc vui vẻ bên nhau!<br>
+            	Năm mới 2025, chúc các bạn cùng gia đình một cái Tết an khang thịnh vượng. Hy vọng tình bạn chúng ta mãi bền lâu!<br>
+            	Kính chúc một năm mới an lành! Hy vọng mỗi ngày của năm 2025 sẽ mở ra những cánh cửa mới, mang đến cơ hội và niềm vui mới cho chúng ta! <br>
+
+                <span id="moreText">Để xem thêm, hãy nhấn vào đây.</span>
+            </p>
+            <div id="fullText" style="display: none;">
+                <p>Năm mới, chúc bạn thêm yêu đời, sức khỏe đầy tràn và chinh phục mọi thử thách phía trước!<br>
+
+Chúc bạn một năm 2025 sung túc, trọn vẹn yêu thương, tài lộc đầy nhà, niềm vui đầy tim! <br>
+
+Tết đến, mong bạn luôn tươi trẻ, nhiệt huyết và đạt được những điều mà bạn luôn mong muốn!<br>
+
+Xuân này, chúc bạn có những khoảnh khắc đáng nhớ bên gia đình và bạn bè. Hạnh phúc mãi theo bạn suốt năm!<br>
+
+Tết này, chúc bạn tài lộc dồi dào, tình cảm thăng hoa và luôn được yêu thương bởi những người thân yêu nhất!</p>
+            </div>
+            <button onclick="showMore()">Xem thêm</button>
+        </div>
+ 
+        <div class="card">
+            <h2>Hình ảnh đẹp về năm mới</h2>
+            <div class="gallery">
+    <div class="photo-frame">
+        <img src="anh1.jpg" alt="Hình ảnh 1">
+    </div>
+    <div class="photo-frame">
+        <img src="anh2.jpg" alt="Hình ảnh 2">
+    </div>
+    <div class="photo-frame">
+        <img src="anh3.jpg" alt="Hình ảnh 3">
+    </div>
+    <div class="photo-frame">
+        <img src="anh4.jpg" alt="Hình ảnh 4">
+    </div>
+    </div>
+        </div>
+        <div class="card">
+            <h2>Video về Tết Nguyên Đán - Tết cổ truyền của dân tộc Việt Nam</h2>
+            <video controls>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="card">
+            <h2>Câu đố vui về Tết</h2>
+            <p>Câu đố 1: Trái gì xanh vỏ đỏ lòng?</p>
+            <input type="text" id="cau1">
+            <button onclick="checkAnswer('cau1', 'dưa hấu')">Kiểm tra</button>
+            <p>Câu đố 2: Loại cây đặc trưng cho ngày tết, không hoa, không trái mà ma quỷ sợ hãi?</p>
+            <input type="text" id="cau2">
+            <button onclick="checkAnswer('cau2', 'cây nêu')">Kiểm tra</button>
+            <p>Câu đố 3: Nghi lễ diễn ra vào ngày 23 tháng Chạp âm lịch gọi là gì?</p>
+            <input type="text" id="cau3">
+            <button onclick="checkAnswer('cau3', 'Cúng đưa ông Táo về trời')">Kiểm tra</button>
+            </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 - Tổ 3/12 Lý</p>
+    </footer>
+</body>
+</html>
